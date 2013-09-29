@@ -4,6 +4,12 @@ Todos.TodoController = Em.ObjectController.extend
     editTodo: ->
       @set('isEditing', true) 
 
+    acceptChanges: ->
+      return if @get('model').get('isSaving')
+      @get('model').save()
+      @set('isEditing', false)
+      
+    
   isCompleted: ((key, value)->
     model = @get('model')
 
