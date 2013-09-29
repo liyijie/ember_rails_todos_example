@@ -1,5 +1,9 @@
 Todos.TodoController = Em.ObjectController.extend
   # needs: []
+  actions: 
+    editTodo: ->
+      @set('isEditing', true) 
+
   isCompleted: ((key, value)->
     model = @get('model')
 
@@ -12,4 +16,5 @@ Todos.TodoController = Em.ObjectController.extend
       model.save()
       value
     ).property('model.isCompleted')  
-
+ 
+  isEditing: false
