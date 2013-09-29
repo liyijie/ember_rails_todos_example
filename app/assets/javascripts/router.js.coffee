@@ -4,3 +4,13 @@ Todos.Router.map ()->
   @resource('todos', { path: '/' })
   # @resource('posts')
 
+Todos.TodosRoute = Em.Route.extend
+  # activate: ->
+  # deactivate: ->
+  # setupController: (controller, model)->
+  # renderTemplate: ->
+  # beforeModel: ->
+  # afterModel: ->
+
+  model: ->
+    @store.find('todo')
