@@ -21,4 +21,6 @@
 // for more details see: http://emberjs.com/guides/application/
 Todos = Ember.Application.create();
 
+Todos.ApplicationAdapter = DS.FixtureAdapter.extend();
+
 //= require_tree .
