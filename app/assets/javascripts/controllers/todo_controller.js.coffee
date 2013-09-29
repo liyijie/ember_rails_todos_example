@@ -8,6 +8,11 @@ Todos.TodoController = Em.ObjectController.extend
       return if @get('model').get('isSaving')
       @get('model').save()
       @set('isEditing', false)
+
+    removeTodo: ->
+      todo = @get('model')
+      todo.deleteRecord()
+      todo.save()
       
     
   isCompleted: ((key, value)->
