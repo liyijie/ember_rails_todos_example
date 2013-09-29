@@ -1,4 +1,7 @@
 Todos::Application.routes.draw do
+  resources :todos
+
+
   get "home/index"
 
   root to: 'home#index'
