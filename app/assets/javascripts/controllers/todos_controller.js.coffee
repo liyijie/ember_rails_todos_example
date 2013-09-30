@@ -40,6 +40,11 @@ Todos.TodosController = Em.ArrayController.extend
     @get('completed') > 0
     ).property('completed')
 
-  allAreDone: (->
-    !!@get('length') && @everyProperty('isCompleted', true)
+  allAreDone: ((key, value) ->
+    if value == undefined
+      !!@get('length') && @everyProperty('isCompleted', true)
+    else
+      @setEach('isCompleted', value)
+      @invoke('save')
+      value
     ).property('@each.isCompleted')
