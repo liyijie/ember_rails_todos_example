@@ -2,20 +2,26 @@
 
 Todos.Router.map ()->
   @resource('todos', { path: '/' }, ->
+    @route 'active'
     )
-  # @resource('posts')
 
 Todos.TodosRoute = Em.Route.extend
-  # activate: ->
-  # deactivate: ->
-  # setupController: (controller, model)->
-  # renderTemplate: ->
-  # beforeModel: ->
-  # afterModel: ->
-
   model: ->
-    @store.find('todo')
+    @store.find(Todos.Todo)
+    # Todos.Todo.find()
 
 Todos.TodosIndexRoute = Em.Route.extend
   model: ->
     @modelFor('todos')
+
+Todos.TodosActiveRoute = Em.Route.extend
+  model: ->
+    # Todos.Todo.filter (todo) ->
+    #   !todo.get("isCompleted")
+    @store.filter(Todos.Todo, (todo) ->
+      !todo.get('isCompleted'))
+
+  renderTemplate: (controller) ->
+    @render 'todos/index', {controller: controller}
+  
+  
