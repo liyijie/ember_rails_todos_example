@@ -35,8 +35,11 @@ Todos.TodosController = Em.ArrayController.extend
   completed: (->
     @filterProperty('isCompleted', true).get('length')
     ).property('@each.isCompleted')
-  
+
   hasCompleted: (->
     @get('completed') > 0
     ).property('completed')
 
+  allAreDone: (->
+    !!@get('length') && @everyProperty('isCompleted', true)
+    ).property('@each.isCompleted')
