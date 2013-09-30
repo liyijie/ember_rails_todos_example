@@ -3,6 +3,7 @@
 Todos.Router.map ()->
   @resource('todos', { path: '/' }, ->
     @route 'active'
+    @route 'completed'
     )
 
 Todos.TodosRoute = Em.Route.extend
@@ -24,4 +25,12 @@ Todos.TodosActiveRoute = Em.Route.extend
   renderTemplate: (controller) ->
     @render 'todos/index', {controller: controller}
   
+Todos.TodosCompletedRoute = Em.Route.extend
+  model: ->
+    @store.filter(Todos.Todo, (todo) ->
+      todo.get('isCompleted'))
+
+  renderTemplate: (controller) ->
+    @render 'todos/index', {controller: controller}
   
+   
