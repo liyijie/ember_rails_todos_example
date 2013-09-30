@@ -17,6 +17,11 @@ Todos.TodosController = Em.ArrayController.extend
       # Save the new model
       todo.save()
       # @store.save()
+
+    clearCompleted: ->
+      completed = @filterProperty('isCompleted', true)
+      completed.invoke('deleteRecord')
+      completed.invoke('save')
     
   remaining: (->
     @filterProperty('isCompleted', false).get('length')
@@ -26,3 +31,12 @@ Todos.TodosController = Em.ArrayController.extend
     remaining = @get('remaining')
     if remaining == 1 then 'item' else 'items'
     ).property('remaining')
+
+  completed: (->
+    @filterProperty('isCompleted', true).get('length')
+    ).property('@each.isCompleted')
+  
+  hasCompleted: (->
+    @get('completed') > 0
+    ).property('completed')
+
