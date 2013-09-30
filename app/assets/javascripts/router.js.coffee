@@ -1,7 +1,8 @@
 # For more information see: http://emberjs.com/guides/routing/
 
 Todos.Router.map ()->
-  @resource('todos', { path: '/' })
+  @resource('todos', { path: '/' }, ->
+    )
   # @resource('posts')
 
 Todos.TodosRoute = Em.Route.extend
@@ -14,3 +15,7 @@ Todos.TodosRoute = Em.Route.extend
 
   model: ->
     @store.find('todo')
+
+Todos.TodosIndexRoute = Em.Route.extend
+  model: ->
+    @modelFor('todos')
